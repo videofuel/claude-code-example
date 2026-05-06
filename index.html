@@ -11,13 +11,13 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:       #FFFFFF;
-      --surface:  #F5F5F5;
-      --text:     #0A0A0A;
-      --muted:    #6B7280;
-      --border:   #E5E7EB;
+      --bg:       #0a0a0a;
+      --surface:  #111111;
+      --surface2: #1c1c1c;
+      --text:     #ededed;
+      --muted:    #888888;
+      --border:   #2a2a2a;
       --accent:   #6366F1;
-      --accent-h: #4F46E5;
     }
 
     html { scroll-behavior: smooth; }
@@ -34,93 +34,157 @@
     nav {
       position: sticky; top: 0; z-index: 100;
       display: flex; align-items: center; justify-content: space-between;
-      padding: 0 60px; height: 68px;
-      background: rgba(255,255,255,0.92);
+      padding: 0 24px; height: 58px;
+      background: rgba(10,10,10,0.88);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
     }
     .logo {
-      font-size: 18px; font-weight: 800; letter-spacing: -0.5px;
+      font-size: 17px; font-weight: 700; letter-spacing: -0.3px;
       color: var(--text); text-decoration: none;
-      display: flex; align-items: center; gap: 9px;
+      display: flex; align-items: center; gap: 8px;
     }
     .logo-mark {
-      width: 28px; height: 28px; background: var(--accent); border-radius: 6px;
+      width: 26px; height: 26px;
       display: flex; align-items: center; justify-content: center;
-      color: #fff; font-size: 14px; font-weight: 800; flex-shrink: 0;
+      flex-shrink: 0;
     }
-    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .logo-mark svg { width: 20px; height: 20px; }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
     .nav-links a {
-      font-size: 14px; font-weight: 500; color: var(--muted);
+      font-size: 14px; font-weight: 400; color: var(--muted);
       text-decoration: none; transition: color .15s;
     }
     .nav-links a:hover { color: var(--text); }
-    .btn {
-      background: var(--accent); color: #fff; border: none;
-      padding: 9px 22px; border-radius: 100px;
-      font-size: 14px; font-weight: 600; font-family: inherit;
-      cursor: pointer; transition: background .15s, transform .15s;
-    }
-    .btn:hover { background: var(--accent-h); transform: translateY(-1px); }
 
-    .btn-lg {
-      padding: 15px 30px; font-size: 16px; font-weight: 700;
-      box-shadow: 0 4px 20px rgba(99,102,241,.3);
+    .nav-right { display: flex; align-items: center; gap: 8px; }
+    .nav-search {
+      display: flex; align-items: center; gap: 10px;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 6px; padding: 5px 12px;
+      font-size: 13px; color: var(--muted); cursor: pointer;
+      transition: border-color .15s;
     }
-    .btn-lg:hover { box-shadow: 0 6px 28px rgba(99,102,241,.45); }
-    .btn-outline {
-      background: none; border: 1.5px solid var(--border); color: var(--muted);
-      padding: 15px 30px; border-radius: 100px;
-      font-size: 16px; font-weight: 600; font-family: inherit;
-      cursor: pointer; transition: border-color .15s, color .15s;
+    .nav-search:hover { border-color: #444; }
+    .nav-search kbd {
+      font-size: 11px; background: var(--surface2);
+      border: 1px solid var(--border); border-radius: 4px;
+      padding: 1px 5px; font-family: inherit; color: var(--muted);
     }
-    .btn-outline:hover { border-color: var(--text); color: var(--text); }
+    .btn-nav {
+      background: var(--surface2); color: var(--text); border: 1px solid var(--border);
+      padding: 6px 14px; border-radius: 6px;
+      font-size: 13px; font-weight: 500; font-family: inherit;
+      cursor: pointer; transition: background .15s;
+    }
+    .btn-nav:hover { background: #262626; }
+    .btn-nav-primary {
+      background: var(--text); color: var(--bg); border: none;
+      padding: 6px 14px; border-radius: 6px;
+      font-size: 13px; font-weight: 600; font-family: inherit;
+      cursor: pointer; transition: opacity .15s;
+    }
+    .btn-nav-primary:hover { opacity: 0.85; }
 
     /* HERO */
     .hero {
-      display: grid; grid-template-columns: 1fr 1fr;
-      align-items: center; gap: 60px;
-      max-width: 1240px; margin: 0 auto;
-      padding: 100px 60px 80px;
+      display: flex; flex-direction: column; align-items: center;
+      text-align: center;
+      padding: 80px 24px 72px;
+      position: relative;
+      overflow: hidden;
     }
-    .hero-badge {
-      display: inline-flex; align-items: center; gap: 7px;
-      background: #EEF2FF; color: var(--accent);
-      font-size: 12px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase;
-      padding: 5px 14px; border-radius: 100px; margin-bottom: 28px;
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -80px; left: 50%; transform: translateX(-50%);
+      width: 640px; height: 420px;
+      background: radial-gradient(ellipse at center, rgba(99,102,241,0.13) 0%, transparent 68%);
+      pointer-events: none;
     }
-    .badge-dot {
-      width: 6px; height: 6px; border-radius: 50%; background: var(--accent);
-      animation: blink 2s ease-in-out infinite;
-    }
-    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.2} }
     h1 {
-      font-size: clamp(44px, 5.5vw, 76px);
-      font-weight: 800; line-height: 1.0; letter-spacing: -3px; margin-bottom: 24px;
+      font-size: clamp(32px, 5vw, 52px);
+      font-weight: 700; line-height: 1.1; letter-spacing: -2px;
+      margin-bottom: 20px; color: var(--text);
+      position: relative;
     }
-    h1 em { font-style: normal; color: var(--accent); }
     .hero-sub {
-      font-size: 18px; color: var(--muted); line-height: 1.7;
-      max-width: 440px; margin-bottom: 40px;
+      font-size: 16px; color: var(--muted); line-height: 1.75;
+      max-width: 460px; margin-bottom: 48px; position: relative;
     }
-    .hero-actions { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
 
-    .hero-visual { position: relative; }
-    .hero-visual img {
-      width: 100%; display: block; border-radius: 20px;
+    /* COURSE CARD */
+    .hero-card-wrap {
+      background: var(--surface2);
       border: 1px solid var(--border);
-      transform: rotate(1.5deg);
-      box-shadow: 14px 14px 0 var(--accent);
+      border-radius: 14px;
+      padding: 24px;
+      width: 100%; max-width: 480px;
+      margin-bottom: 24px;
+      position: relative; z-index: 1;
+      text-align: left;
     }
-    .hero-pill {
-      position: absolute; bottom: -18px; left: -18px;
-      background: var(--text); color: #fff;
-      padding: 12px 20px; border-radius: 14px;
-      font-size: 13px; font-weight: 700;
-      box-shadow: 0 8px 24px rgba(0,0,0,.15);
-      white-space: nowrap;
+    .hero-book {
+      display: flex; align-items: flex-start; gap: 16px;
+      margin-bottom: 16px;
     }
-    .hero-pill span { color: #A5B4FC; }
+    .book-cover {
+      width: 84px; height: 104px; flex-shrink: 0;
+      background: linear-gradient(160deg, #16162a 0%, #0e0e1e 100%);
+      border-radius: 6px; border: 1px solid #333;
+      display: flex; flex-direction: column; align-items: center;
+      justify-content: space-between; padding: 10px 8px 12px;
+      position: relative;
+    }
+    .book-bookmark {
+      position: absolute; top: 0; right: 10px;
+      width: 9px; height: 16px; background: var(--accent);
+      clip-path: polygon(0 0, 100% 0, 100% 82%, 50% 100%, 0 82%);
+    }
+    .book-title {
+      font-size: 9px; font-weight: 600; color: #aaa;
+      text-align: center; line-height: 1.3;
+    }
+    .book-letter {
+      font-size: 22px; font-weight: 800; color: var(--text); letter-spacing: -1px;
+    }
+    .book-meta { flex: 1; }
+    .book-meta h3 {
+      font-size: 15px; font-weight: 600; color: var(--text);
+      margin-bottom: 4px; letter-spacing: -0.3px;
+    }
+    .book-meta p { font-size: 13px; color: var(--muted); line-height: 1.5; }
+    .book-badge {
+      display: inline-flex; align-items: center; gap: 5px;
+      background: rgba(99,102,241,0.1); color: #a5a8f9;
+      font-size: 11px; font-weight: 600; padding: 3px 9px;
+      border-radius: 100px; margin-top: 8px; border: 1px solid rgba(99,102,241,0.2);
+    }
+    .badge-dot { width: 5px; height: 5px; border-radius: 50%; background: currentColor; }
+
+    .chapter-row {
+      display: flex; align-items: center; justify-content: space-between;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 8px; padding: 12px 14px; gap: 12px;
+    }
+    .chapter-label { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 2px; }
+    .chapter-desc { font-size: 12px; color: var(--muted); }
+    .chapter-ring {
+      width: 28px; height: 28px; border-radius: 50%;
+      border: 2px solid var(--border); flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .chapter-ring-dot { width: 8px; height: 8px; border-radius: 50%; background: #333; }
+
+    .btn-start {
+      background: transparent; color: var(--text);
+      border: 1px solid var(--border);
+      padding: 11px 28px; border-radius: 6px;
+      font-size: 15px; font-weight: 500; font-family: inherit;
+      cursor: pointer; transition: background .15s, border-color .15s;
+      position: relative; z-index: 1;
+    }
+    .btn-start:hover { background: var(--surface); border-color: #444; }
 
     /* LOGOS */
     .logos {
@@ -129,14 +193,14 @@
     }
     .logos-label {
       text-align: center; font-size: 11px; font-weight: 600;
-      color: var(--muted); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 24px;
+      color: #444; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 24px;
     }
     .logos-row {
       display: flex; justify-content: center; align-items: center;
       gap: 52px; flex-wrap: wrap;
     }
     .logo-co {
-      font-size: 15px; font-weight: 700; color: #D1D5DB;
+      font-size: 15px; font-weight: 700; color: #2e2e2e;
       letter-spacing: -0.3px; transition: color .2s; cursor: default;
     }
     .logo-co:hover { color: var(--muted); }
@@ -165,15 +229,15 @@
     }
     .link-accent:hover { opacity: .7; }
 
-    .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
     .card {
-      border: 1px solid var(--border); border-radius: 18px;
-      overflow: hidden; background: var(--bg);
+      border: 1px solid var(--border); border-radius: 14px;
+      overflow: hidden; background: var(--surface);
       transition: transform .2s, box-shadow .2s;
     }
-    .card:hover { transform: translateY(-6px); box-shadow: 0 20px 48px rgba(0,0,0,.08); }
+    .card:hover { transform: translateY(-5px); box-shadow: 0 20px 48px rgba(0,0,0,.5); }
     .card img { width: 100%; display: block; }
-    .card-body { padding: 24px; }
+    .card-body { padding: 22px; }
     .card-level {
       font-size: 11px; font-weight: 700; letter-spacing: 1px;
       text-transform: uppercase; margin-bottom: 10px;
@@ -181,7 +245,7 @@
     .lv-b { color: #10B981; }
     .lv-i { color: var(--accent); }
     .lv-a { color: #F59E0B; }
-    .card-title { font-size: 18px; font-weight: 700; letter-spacing: -0.3px; line-height: 1.3; margin-bottom: 8px; }
+    .card-title { font-size: 17px; font-weight: 700; letter-spacing: -0.3px; line-height: 1.3; margin-bottom: 8px; }
     .card-desc { font-size: 14px; color: var(--muted); line-height: 1.65; margin-bottom: 20px; }
     .card-foot {
       display: flex; justify-content: space-between; align-items: center;
@@ -191,19 +255,23 @@
     .cm { font-size: 12px; color: var(--muted); }
     .cm strong { color: var(--text); }
     .arrow {
-      width: 34px; height: 34px; border-radius: 50%; background: var(--surface);
+      width: 32px; height: 32px; border-radius: 50%; background: var(--surface2);
       display: flex; align-items: center; justify-content: center;
-      font-size: 15px; cursor: pointer; transition: background .15s, color .15s;
+      font-size: 14px; cursor: pointer; transition: background .15s;
+      border: 1px solid var(--border);
     }
-    .arrow:hover { background: var(--accent); color: #fff; }
+    .arrow:hover { background: var(--accent); border-color: var(--accent); }
 
     /* FEATURE */
-    .feature-band { background: var(--surface); padding: 100px 0; }
+    .feature-band {
+      background: var(--surface); padding: 100px 0;
+      border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    }
     .feature-inner {
       max-width: 1240px; margin: 0 auto; padding: 0 60px;
       display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
     }
-    .feature-inner img { width: 100%; display: block; border-radius: 20px; border: 1px solid var(--border); }
+    .feature-inner img { width: 100%; display: block; border-radius: 16px; border: 1px solid var(--border); }
     .big-stat {
       font-size: clamp(64px, 8vw, 104px);
       font-weight: 800; letter-spacing: -4px; line-height: 1;
@@ -212,7 +280,7 @@
     .feature-desc { font-size: 17px; color: var(--muted); line-height: 1.75; margin-bottom: 32px; }
     .feature-list { list-style: none; display: flex; flex-direction: column; gap: 14px; }
     .feature-list li {
-      font-size: 15px; font-weight: 500; line-height: 1.5;
+      font-size: 15px; font-weight: 500; line-height: 1.5; color: var(--muted);
       padding-left: 16px; border-left: 2px solid var(--accent);
     }
 
@@ -232,7 +300,7 @@
     .q-author { display: inline-flex; align-items: center; gap: 14px; }
     .q-avatar {
       width: 44px; height: 44px; border-radius: 50%; overflow: hidden;
-      border: 2px solid var(--border); flex-shrink: 0;
+      border: 1px solid var(--border); flex-shrink: 0;
     }
     .q-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .q-name { font-size: 15px; font-weight: 700; text-align: left; }
@@ -244,8 +312,8 @@
     .cta-sub { font-size: 18px; color: var(--muted); margin-bottom: 40px; }
     .cta-form {
       display: inline-flex;
-      background: var(--surface); border: 1.5px solid var(--border);
-      border-radius: 100px; padding: 6px 6px 6px 24px;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 8px; padding: 5px 5px 5px 16px;
       max-width: 420px; width: 100%;
     }
     .cta-input {
@@ -253,12 +321,17 @@
       font-size: 15px; color: var(--text); outline: none; min-width: 0;
     }
     .cta-input::placeholder { color: var(--muted); }
+    .btn-cta {
+      background: var(--text); color: var(--bg); border: none;
+      padding: 9px 18px; border-radius: 5px;
+      font-size: 14px; font-weight: 600; font-family: inherit;
+      cursor: pointer; transition: opacity .15s; flex-shrink: 0;
+    }
+    .btn-cta:hover { opacity: 0.85; }
     .cta-note { font-size: 12px; color: var(--muted); margin-top: 16px; }
 
     /* FOOTER */
-    footer {
-      border-top: 1px solid var(--border); padding: 48px 60px;
-    }
+    footer { border-top: 1px solid var(--border); padding: 48px 60px; }
     .footer-grid {
       max-width: 1240px; margin: 0 auto;
       display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px; margin-bottom: 48px;
@@ -266,7 +339,7 @@
     .footer-tagline { font-size: 14px; color: var(--muted); line-height: 1.6; max-width: 260px; margin-top: 12px; }
     .footer-col-label {
       font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
-      color: var(--muted); margin-bottom: 16px;
+      color: #444; margin-bottom: 16px;
     }
     .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
     .footer-links a { font-size: 14px; color: var(--muted); text-decoration: none; transition: color .15s; }
@@ -280,11 +353,11 @@
 
     /* RESPONSIVE */
     @media (max-width: 900px) {
-      nav { padding: 0 24px; }
+      nav { padding: 0 16px; }
       .nav-links { display: none; }
+      .nav-search { display: none; }
 
-      .hero { grid-template-columns: 1fr; padding: 60px 24px 80px; gap: 56px; }
-      .hero-visual img { transform: none; box-shadow: 8px 8px 0 var(--accent); }
+      .hero { padding: 56px 20px 56px; }
 
       .logos { padding: 32px 24px; }
       .logos-row { gap: 28px; }
@@ -308,39 +381,59 @@
 
   <nav>
     <a class="logo" href="#">
-      <div class="logo-mark">S</div>
+      <div class="logo-mark">
+        <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M10 2L19 18H1L10 2Z" fill="white"/>
+        </svg>
+      </div>
       Sphinx
     </a>
     <ul class="nav-links">
-      <li><a href="#courses">Courses</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#">Pricing</a></li>
+      <li><a href="#courses">Showcase</a></li>
+      <li><a href="#">Docs</a></li>
+      <li><a href="#">Blog</a></li>
+      <li><a href="#">Templates</a></li>
+      <li><a href="#about">Enterprise</a></li>
     </ul>
-    <button class="btn">Get started</button>
+    <div class="nav-right">
+      <div class="nav-search">Search documentation… <kbd>Ctrl K</kbd></div>
+      <button class="btn-nav">Deploy</button>
+      <button class="btn-nav-primary">Learn</button>
+    </div>
   </nav>
 
   <main>
     <!-- HERO -->
     <div class="hero">
-      <div>
-        <div class="hero-badge"><span class="badge-dot"></span> Now in beta</div>
-        <h1>Learn AI.<br /><em>No riddles.</em></h1>
-        <p class="hero-sub">
-          Sphinx strips away the mysticism. Real projects, real models, real skills —
-          from your first neural network to shipping production-grade AI.
-        </p>
-        <div class="hero-actions">
-          <button class="btn btn-lg">Explore courses →</button>
-          <button class="btn-outline">See how it works</button>
+      <h1>Start building with Sphinx</h1>
+      <p class="hero-sub">
+        Go from beginner to expert by learning the foundations of AI and
+        building a fully functional demo that uses all the latest features.
+      </p>
+
+      <div class="hero-card-wrap">
+        <div class="hero-book">
+          <div class="book-cover">
+            <div class="book-bookmark"></div>
+            <div class="book-title">Learn<br/>Sphinx</div>
+            <div class="book-letter">S</div>
+          </div>
+          <div class="book-meta">
+            <h3>Learn Sphinx</h3>
+            <p>16 chapters that take you from React to AI.</p>
+            <div class="book-badge"><span class="badge-dot"></span> You Have Completed the Course!</div>
+          </div>
+        </div>
+        <div class="chapter-row">
+          <div>
+            <div class="chapter-label">Chapter 1: Introduction</div>
+            <div class="chapter-desc">Dive into the course materials</div>
+          </div>
+          <div class="chapter-ring"><div class="chapter-ring-dot"></div></div>
         </div>
       </div>
-      <div class="hero-visual">
-        <img
-          src="https://placehold.co/560x460/EEF2FF/6366F1?text=Sphinx+Platform"
-          alt="Sphinx learning platform preview"
-        />
-        <div class="hero-pill">⚡ <span>12,400+</span> learners enrolled</div>
-      </div>
+
+      <button class="btn-start">Start Learning →</button>
     </div>
 
     <!-- LOGOS -->
@@ -369,8 +462,7 @@
       <div class="cards">
 
         <div class="card">
-          <img src="https://placehold.co/400x220/EEF2FF/6366F1?text=AI+Fundamentals"
-               alt="AI Fundamentals" />
+          <img src="https://placehold.co/400x220/111111/6366F1?text=AI+Fundamentals" alt="AI Fundamentals" />
           <div class="card-body">
             <div class="card-level lv-b">Beginner</div>
             <div class="card-title">AI Fundamentals: Zero to One</div>
@@ -387,8 +479,7 @@
         </div>
 
         <div class="card">
-          <img src="https://placehold.co/400x220/F0FDF4/10B981?text=Build+LLM+Apps"
-               alt="Build LLM Apps" />
+          <img src="https://placehold.co/400x220/111111/10B981?text=Build+LLM+Apps" alt="Build LLM Apps" />
           <div class="card-body">
             <div class="card-level lv-i">Intermediate</div>
             <div class="card-title">Build LLM Apps with Python</div>
@@ -405,8 +496,7 @@
         </div>
 
         <div class="card">
-          <img src="https://placehold.co/400x220/FFFBEB/F59E0B?text=Fine-Tuning+%26+MLOps"
-               alt="Fine-Tuning and MLOps" />
+          <img src="https://placehold.co/400x220/111111/F59E0B?text=Fine-Tuning+%26+MLOps" alt="Fine-Tuning and MLOps" />
           <div class="card-body">
             <div class="card-level lv-a">Advanced</div>
             <div class="card-title">Fine-Tuning &amp; MLOps in Production</div>
@@ -430,8 +520,7 @@
   <!-- FEATURE -->
   <div class="feature-band" id="about">
     <div class="feature-inner">
-      <img src="https://placehold.co/560x480/E0E7FF/6366F1?text=Project-First+Learning"
-           alt="Project-first learning environment" />
+      <img src="https://placehold.co/560x480/111111/6366F1?text=Project-First+Learning" alt="Project-first learning environment" />
       <div>
         <div class="eyebrow">Why Sphinx</div>
         <div class="big-stat">94%</div>
@@ -459,7 +548,7 @@
     </blockquote>
     <div class="q-author">
       <div class="q-avatar">
-        <img src="https://placehold.co/44x44/EEF2FF/6366F1?text=PS" alt="Priya Sharma" />
+        <img src="https://placehold.co/44x44/1c1c1c/6366F1?text=PS" alt="Priya Sharma" />
       </div>
       <div>
         <div class="q-name">Priya Sharma</div>
@@ -476,7 +565,7 @@
     <p class="cta-sub">No credit card. Three full courses free — permanently.</p>
     <div class="cta-form">
       <input class="cta-input" type="email" placeholder="Enter your email…" />
-      <button class="btn" style="flex-shrink:0">Start free →</button>
+      <button class="btn-cta">Start free →</button>
     </div>
     <p class="cta-note">We'll send your login link. No spam, ever.</p>
   </div>
@@ -486,7 +575,11 @@
     <div class="footer-grid">
       <div>
         <a class="logo" href="#">
-          <div class="logo-mark">S</div>
+          <div class="logo-mark">
+            <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10 2L19 18H1L10 2Z" fill="white"/>
+            </svg>
+          </div>
           Sphinx
         </a>
         <p class="footer-tagline">The AI education platform built for builders. Learn by doing, ship on day one.</p>

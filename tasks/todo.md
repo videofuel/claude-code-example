@@ -32,6 +32,26 @@ Placeholder images via `placehold.co`. No JS, all CSS inline.
 
 ---
 
+---
+
+## UI Redesign — Dark Theme (Next.js-inspired)
+
+### Changes planned
+- [x] Swap color scheme to dark (bg `#0a0a0a`, surface `#111111`, text `#ededed`, borders `#2a2a2a`)
+- [x] Update nav: dark background, triangle SVG logo mark, search bar with Ctrl+K kbd hint, "Deploy" + "Learn" buttons replacing pill CTA
+- [x] Replace two-column hero with centered single-column: large heading, subtitle, course card preview (book cover + chapter row), "Start Learning →" outlined button
+- [x] Update placeholder image colors to dark-themed variants (`#111111` base)
+- [x] Update cards, feature band, quote, CTA, footer to use dark surface/border tokens
+- [x] Keep all content (Sphinx branding, copy, sections) — visual style only
+
+### Review
+- **Dark theme**: All CSS variables switched to near-black palette; existing structure untouched
+- **Nav**: Triangle SVG logo mark, frosted-glass dark bar, search pill with `Ctrl K` hint, "Deploy" + "Learn" buttons
+- **Hero**: Two-column removed → centered flex column with indigo radial glow, course card (book cover + bookmark + chapter row), outlined "Start Learning →" button
+- **Rest of page**: Cards, feature band, quote, CTA, footer all use dark surface/border tokens; placeholder image backgrounds updated to `#111111`
+
+---
+
 ## Review
 
 **File created:** `index.html` (single file, ~330 lines, all CSS inline)
